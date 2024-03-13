@@ -24,6 +24,8 @@ void RGB_RED(uint16_t Pixel_Len);						   // 显示红灯
 void RGB_GREEN(uint16_t Pixel_Len);						   // 显示绿灯
 void RGB_BLUE(uint16_t Pixel_Len);						   // 显示蓝灯
 void RGB_WHITE(uint16_t Pixel_Len);						   // 显示白灯
-void RGB_NO(uint16_t Pixel_Len);						   // 关闭LED
+void RGB_BLACK(uint16_t Pixel_Len);						   // 关闭LED
+void RGB_ON(uint16_t Pixel_Num);								 //点亮第几颗RGB
+void RGB_OFF(uint16_t Pixel_Num);       				 //熄灭第几颗RGB
 
 #endif

@@ -9,7 +9,7 @@
 
 /*Some Static Colors------------------------------*/
 const RGB_Color_TypeDef RED      = {255,0,0};   //显示红色RGB数据
-const RGB_Color_TypeDef GREEN    = {0,255,0};
+const RGB_Color_TypeDef GREEN    = {0,100,0};
 const RGB_Color_TypeDef BLUE     = {0,0,255};
 const RGB_Color_TypeDef SKY      = {0,255,255};
 const RGB_Color_TypeDef MAGENTA  = {255,0,220};
@@ -17,8 +17,7 @@ const RGB_Color_TypeDef YELLOW   = {127,216,0};
 const RGB_Color_TypeDef OEANGE   = {127,106,0};
 const RGB_Color_TypeDef BLACK    = {0,0,0};
 const RGB_Color_TypeDef WHITE    = {255,255,255};
-const RGB_Color_TypeDef NO    = {0,0,0};
- 
+
 /*二维数组存放最终PWM输出数组，每一行24个
 数据代表一个LED，最后一行24个0代表RESET码*/
 uint32_t Pixel_Buf[Pixel_NUM+1][24];       
@@ -123,17 +122,40 @@ void RGB_WHITE(uint16_t Pixel_Len)
 功能：关闭LED个数
 参数：Pixel_Len为显示LED个数
 */
-void RGB_NO(uint16_t Pixel_Len)
+void RGB_BLACK(uint16_t Pixel_Len)
 {
 	uint16_t i;
 	for(i=0;i<Pixel_Len;i++)//给对应个数LED写入白色
 	{
-		RGB_SetColor(i,NO);
+		RGB_SetColor(i,BLACK);
 	}
 	Reset_Load();
 	RGB_SendArray();
 }
- 
+
+ /*
+功能：点亮第几颗RGB
+参数：Pixel_Num为亮第几颗灯（从0开始）
+*/
+void RGB_ON(uint16_t Pixel_Num)
+{
+
+	RGB_SetColor(Pixel_Num,YELLOW);
+	Reset_Load();
+	RGB_SendArray();
+}
+
+ /*
+功能：熄灭第几颗RGB
+参数：Pixel_Num为亮第几颗灯（从0开始）
+*/
+void RGB_OFF(uint16_t Pixel_Num)
+{
+
+	RGB_SetColor(Pixel_Num,BLACK);
+	Reset_Load();
+	RGB_SendArray();
+}
 //也可以继续添加其他颜色，和颜色变化函数等
 
 //发送完成后停止DMA
